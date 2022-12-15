@@ -4,8 +4,8 @@ const app = express()
 
 app.use('/', express.static('public'))
 
-app.get('/', (req, res) => {
-    res.send('hallo')
+app.get('/contact', (req, res) => {
+    res.sendFile('public/pages/contact.html',{ root: __dirname })
 })
 
 const port = process.env.PORT || 3000
