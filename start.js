@@ -1,4 +1,6 @@
 const express = require('express')
+const fileUpload = require('express-fileupload')
+const path  = require('path')
 
 const app = express()
 
@@ -17,6 +19,12 @@ app.get('/ejs', (req, res) => {
         opties: ['eten','drinken']
     })
 })  
+
+// upload part
+
+app.get('/upload-file', (req, res) => {
+    res.sendFile(path.join(__dirname, "index.html"))
+})
 
 const port = process.env.PORT || 3000
 app.listen(port, () => { 
