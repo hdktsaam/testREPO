@@ -1,6 +1,7 @@
 const express = require('express')
 const fileUpload = require('express-fileupload')
 const path  = require('path')
+const fs = require('fs')
 
 // importing middleware
 const filesPayloadExists = require('./middleware/filesPayloadExists')
@@ -50,7 +51,15 @@ app.post('/upload', fileUpload({ createParentPath: true}),
         return res.json({ status: 'logged', message: Object.keys(files).toString()})
 })
 
-
+app.get('/listFiles', (req, res) => {
+    const filepath = './public'
+    fs.readdir(filepath, function (err, files) {
+        if (err) res.status(500).json({error: err, fout: 'kan de map niet lezen'}) 
+        
+        res.json({message: 'gevonden', bestanden : files})
+    });
+    
+})
 
 const port = process.env.PORT || 3000
 app.listen(port, () => { 
