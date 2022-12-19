@@ -42,7 +42,7 @@ app.post('/upload', fileUpload({ createParentPath: true}),
 
         Object.keys(files).forEach(key => {
             // const filepath = path.join(__dirname, 'files', files[key].name)
-            const filepath = './public/'+ files[key].name
+            const filepath = './public/uploads/'+ files[key].name
             files[key].mv(filepath, (err) => {
                 if (err) return res.status(500).json({status: "error", message: "fout"})
             })
@@ -52,10 +52,10 @@ app.post('/upload', fileUpload({ createParentPath: true}),
 })
 
 app.get('/listFiles', (req, res) => {
-    const filepath = './public'
+    const filepath = './public/uploads'
     fs.readdir(filepath, function (err, files) {
         if (err) res.status(500).json({error: err, fout: 'kan de map niet lezen'}) 
-        
+
         res.json({message: 'gevonden', bestanden : files})
     });
     
