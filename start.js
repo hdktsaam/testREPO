@@ -28,7 +28,7 @@ app.get('/ejs', (req, res) => {
 // upload part
 
 app.get('/upload-file', (req, res) => {
-    res.sendFile(path.join(__dirname, "index.html"))
+    res.render("indexUpload")
 })
 
 // https://www.youtube.com/watch?v=4pmkQjsKJ-U
